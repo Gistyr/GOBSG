@@ -4,3 +4,6 @@ version = "3.1.0"
 edition = "2024"
 
 [dependencies]
+better-logger = { version = "2.0.3", features = ["native"] }
+actix-web = "4.11.0"
+tokio = "1.48.0"

@@ -4,6 +4,15 @@ Each such component is licensed to you under its own license terms.
 #### Below are the licenses for crates used in this project:
 
 ```
+PROJECT: concat.sh
+LICENSE: MIT
+URL: https://github.com/Lozlof/concat.sh
+
+SEE:
+LICENSE-MIT
+```
+
+```
 CRATE: better-logger
 LICENSE: MIT OR Apache-2.0
 URL: https://crates.io/crates/better-logger
