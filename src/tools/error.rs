@@ -13,10 +13,10 @@
 //!
 //! ---------------------------------------- //
 
+use better_logger::logger::error;
 use std::fmt::Debug;
 use actix_web::HttpResponse;
 use actix_session::Session;
-use better_logger::logger::error;
 
 #[derive(Debug)]
 pub(crate) struct Error;

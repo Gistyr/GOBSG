@@ -14,8 +14,8 @@
 //! ---------------------------------------- //
 
 use crate::OpenidClientData;
-use crate::error::Error;
-use settings::MainConfiguration;
+use crate::tools::error::Error;
+use crate::tools::settings::MainConfiguration;
 use better_logger::logger::debugx;
 use std::collections::HashMap;
 use actix_web::HttpResponse;

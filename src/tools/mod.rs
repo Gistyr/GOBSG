@@ -13,4 +13,7 @@
 //!
 //! ---------------------------------------- //
 
+pub(crate) mod error;
+pub(crate) mod settings;
+
 ////////// END OF FILE //////////

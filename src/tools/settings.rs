@@ -18,12 +18,12 @@ use std::process::exit;
 use std::fs::read_to_string;
 use serde::Deserialize;
 
-pub const LOGGING_CONFIG_PATH: &str = "logging-config.toml";
-pub const MAIN_CONFIG_PATH: &str = "main-config.toml";
+pub(crate) const LOGGING_CONFIG_PATH: &str = "logging-config.toml";
+pub(crate) const MAIN_CONFIG_PATH: &str = "main-config.toml";
 
 #[derive(Deserialize)]
 #[serde(tag = "type")]
-pub enum ConfigNetworkFormat {
+pub(crate) enum ConfigNetworkFormat {
     PlainText,
     JsonText { field: String },
 }
@@ -38,22 +38,22 @@ impl From<ConfigNetworkFormat> for NetworkFormat {
 }
 
 #[derive(Deserialize)]
-pub struct LoggingConfiguration {
-    pub terminal_logs: bool,
-    pub terminal_log_lvl: String,
-    pub wasm_logging: bool,
-    pub file_logs: bool,
-    pub file_log_lvl: String,
-    pub log_file_path: String,
-    pub network_logs: bool,
-    pub network_log_lvl: String,
-    pub network_endpoint_url: String,
-    pub network_format: ConfigNetworkFormat,
-    pub debug_extra: bool,
-    pub async_logging: bool,
+pub(crate) struct LoggingConfiguration {
+    pub(crate) terminal_logs: bool,
+    pub(crate) terminal_log_lvl: String,
+    pub(crate) wasm_logging: bool,
+    pub(crate) file_logs: bool,
+    pub(crate) file_log_lvl: String,
+    pub(crate) log_file_path: String,
+    pub(crate) network_logs: bool,
+    pub(crate) network_log_lvl: String,
+    pub(crate) network_endpoint_url: String,
+    pub(crate) network_format: ConfigNetworkFormat,
+    pub(crate) debug_extra: bool,
+    pub(crate) async_logging: bool,
 }
 
-pub fn new_logger_settings() -> LoggerSettings {
+pub(crate) fn new_logger_settings() -> LoggerSettings {
     let config: LoggingConfiguration = {
         match read_to_string(LOGGING_CONFIG_PATH) {
             Ok(raw) => {
@@ -89,69 +89,69 @@ pub fn new_logger_settings() -> LoggerSettings {
 }
 
 #[derive(Deserialize)]
-pub struct ReadConfiguration {
-    pub this_server_url: String,
-    pub cookie_name: String,
-    pub cookie_domain: String,
-    pub secret_cookie_hex_key: String,
-    pub requesting_client_url: String,
-    pub issuer_url: String,
-    pub logout_url: String,
-    pub client: String,
-    pub client_secret: String,
+pub(crate) struct ReadConfiguration {
+    pub(crate) this_server_url: String,
+    pub(crate) cookie_name: String,
+    pub(crate) cookie_domain: String,
+    pub(crate) secret_cookie_hex_key: String,
+    pub(crate) requesting_client_url: String,
+    pub(crate) issuer_url: String,
+    pub(crate) logout_url: String,
+    pub(crate) client: String,
+    pub(crate) client_secret: String,
 
-    pub listen_address: Option<String>,
-    pub listen_port: Option<u16>,
-    pub workers: Option<usize>,
-    pub redis_address: Option<String>,
-    pub heartbeat_logging: Option<bool>,
-    pub heartbeat_interval_hours: Option<u16>,
-    pub machine_name: Option<String>,
-    pub container_name: Option<String>,
-    pub provider: Option<String>,
-    pub keep_alive_time_secs: Option<u64>,
-    pub client_request_timeout_secs: Option<u64>,
-    pub client_disconnect_timeout_secs: Option<u64>,
-    pub max_connections: Option<usize>,
-    pub early_refresh_skew_secs: Option<i64>,
-    pub user_details_fail_when_not_authenticated: Option<bool>,
-    pub default_username: Option<String>,
-    pub default_user_id: Option<String>,
+    pub(crate) listen_address: Option<String>,
+    pub(crate) listen_port: Option<u16>,
+    pub(crate) workers: Option<usize>,
+    pub(crate) redis_address: Option<String>,
+    pub(crate) heartbeat_logging: Option<bool>,
+    pub(crate) heartbeat_interval_hours: Option<u16>,
+    pub(crate) machine_name: Option<String>,
+    pub(crate) container_name: Option<String>,
+    pub(crate) provider: Option<String>,
+    pub(crate) keep_alive_time_secs: Option<u64>,
+    pub(crate) client_request_timeout_secs: Option<u64>,
+    pub(crate) client_disconnect_timeout_secs: Option<u64>,
+    pub(crate) max_connections: Option<usize>,
+    pub(crate) early_refresh_skew_secs: Option<i64>,
+    pub(crate) user_details_fail_when_not_authenticated: Option<bool>,
+    pub(crate) default_username: Option<String>,
+    pub(crate) default_user_id: Option<String>,
 }
 
 #[derive(Debug, Deserialize)]
-pub struct MainConfiguration {
-    pub this_server_url: String,
-    pub cookie_name: String,
-    pub cookie_domain: String,
-    pub secret_cookie_hex_key: String,
-    pub requesting_client_url: String,
-    pub issuer_url: String,
-    pub logout_url: String,
-    pub client: String,
-    pub client_secret: String,
+pub(crate) struct MainConfiguration {
+    pub(crate) this_server_url: String,
+    pub(crate) cookie_name: String,
+    pub(crate) cookie_domain: String,
+    pub(crate) secret_cookie_hex_key: String,
+    pub(crate) requesting_client_url: String,
+    pub(crate) issuer_url: String,
+    pub(crate) logout_url: String,
+    pub(crate) client: String,
+    pub(crate) client_secret: String,
 
-    pub listen_address: String,
-    pub listen_port: u16,
-    pub workers: usize,
-    pub redis_address: String,
-    pub heartbeat_logging: bool,
-    pub heartbeat_interval_hours: u16,
-    pub machine_name: String, 
-    pub container_name: String,
-    pub provider: String,
-    pub keep_alive_time_secs: u64,
-    pub client_request_timeout_secs: u64,
-    pub client_disconnect_timeout_secs: u64,
-    pub max_connections: usize,
-    pub early_refresh_skew_secs: i64,
-    pub user_details_fail_when_not_authenticated: bool,
-    pub default_username: String,
-    pub default_user_id: String,
+    pub(crate) listen_address: String,
+    pub(crate) listen_port: u16,
+    pub(crate) workers: usize,
+    pub(crate) redis_address: String,
+    pub(crate) heartbeat_logging: bool,
+    pub(crate) heartbeat_interval_hours: u16,
+    pub(crate) machine_name: String, 
+    pub(crate) container_name: String,
+    pub(crate) provider: String,
+    pub(crate) keep_alive_time_secs: u64,
+    pub(crate) client_request_timeout_secs: u64,
+    pub(crate) client_disconnect_timeout_secs: u64,
+    pub(crate) max_connections: usize,
+    pub(crate) early_refresh_skew_secs: i64,
+    pub(crate) user_details_fail_when_not_authenticated: bool,
+    pub(crate) default_username: String,
+    pub(crate) default_user_id: String,
 }
 
 impl MainConfiguration {
-    pub fn new() -> MainConfiguration {
+    pub(crate) fn new() -> MainConfiguration {
         let config: ReadConfiguration = {
             match read_to_string(MAIN_CONFIG_PATH) {
                 Ok(raw) => {
