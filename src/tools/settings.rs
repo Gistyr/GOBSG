@@ -13,7 +13,7 @@
 //!
 //! ---------------------------------------- //
 
-use better_logger::{LoggerSettings, NetworkFormat, logger::debugx};
+use better_logger::{LoggerSettings, NetworkFormat};
 use std::process::exit;
 use std::fs::read_to_string;
 use serde::Deserialize;
@@ -268,7 +268,6 @@ impl MainConfiguration {
             default_username: default_username,
             default_user_id: default_user_id,
         };
-        debugx!("{:?}", main_config_testing);
         return main_config_testing;
     }
 }
