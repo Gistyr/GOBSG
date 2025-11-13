@@ -20,6 +20,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "actix-cors"
+version = "0.7.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "daa239b93927be1ff123eebada5a3ff23e89f0124ccb8609234e5103d5a5ae6d"
+dependencies = [
+ "actix-utils",
+ "actix-web",
+ "derive_more",
+ "futures-util",
+ "log",
+ "once_cell",
+ "smallvec",
+]
+
+[[package]]
 name = "actix-http"
 version = "3.11.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -899,7 +914,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "39cab71617ae0d63f51a36d69f866391735b51691dbda63cf6f96d042b63efeb"
 dependencies = [
  "libc",
- "windows-sys 0.52.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -1069,16 +1084,21 @@ dependencies = [
 name = "gobsg"
 version = "3.1.0"
 dependencies = [
+ "actix-cors",
  "actix-session",
  "actix-web",
  "better-logger",
  "chrono",
+ "hex",
  "num_cpus",
  "openidconnect",
+ "redis",
  "reqwest",
  "serde",
  "serde_json",
+ "tokio",
  "toml",
+ "url",
 ]
 
 [[package]]
@@ -2206,6 +2226,7 @@ dependencies = [
  "percent-encoding",
  "pin-project-lite",
  "ryu",
+ "sha1_smol",
  "socket2 0.6.1",
  "tokio",
  "tokio-util",
@@ -2389,7 +2410,7 @@ dependencies = [
  "errno",
  "libc",
  "linux-raw-sys",
- "windows-sys 0.52.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -2659,6 +2680,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "sha1_smol"
+version = "1.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bbfa15b3dddfee50a0fff136974b3e1bde555604ba463834a7eb7deb6417705d"
+
+[[package]]
 name = "sha2"
 version = "0.10.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2828,7 +2855,7 @@ dependencies = [
  "getrandom 0.3.4",
  "once_cell",
  "rustix",
- "windows-sys 0.52.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]

@@ -15,5 +15,8 @@
 
 pub(crate) mod login;
 pub(crate) mod callback;
+pub(crate) mod sessionstatus;
+pub(crate) mod details;
+pub(crate) mod logout;
 
 ////////// END OF FILE //////////

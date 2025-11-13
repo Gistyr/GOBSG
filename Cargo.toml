@@ -7,17 +7,17 @@ edition = "2024"
 better-logger = { version = "2.0.3", features = ["native"] }
 actix-web = "4.11.0"
 actix-session = { version = "0.11.0", features = ["redis-session"] }
-#actix-cors = "0.7.0"
+actix-cors = "0.7.0"
 openidconnect = "4.0.1"
-#redis = { version = "0.32.7", features = ["tokio-comp"] }
-#tokio = "1.48.0"
+redis = { version = "0.32.7", features = ["tokio-comp"] }
+tokio = "1.48.0"
 reqwest = { version = "0.12.24", features = ["json"] }
 serde = { version = "1.0.228", features = ["derive"] }
 serde_json = "1.0.145"
 #urlencoding = "2.1.3"
 chrono = "0.4.42"
-#hex = "0.4.3"
+hex = "0.4.3"
 #base64 = "0.22"
-#url = "2.5.7"
+url = "2.5.7"
 toml = "0.9.8"
 num_cpus = "1.17.0"

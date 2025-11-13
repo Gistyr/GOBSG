@@ -1,1 +1,30 @@
-/target
+#///////// START OF FILE //////////
+# pachisi-bff-server/
+#
+# Copyright (c) 2025 Gistyr LLC. All Rights Reserved.
+#
+# THE CONTENTS OF THIS PROJECT ARE PROPRIETARY AND CONFIDENTIAL.
+# UNAUTHORIZED COPYING, TRANSFER, OR REPRODUCTION OF THIS PROJECT’S CONTENTS, IN ANY FORM OR BY ANY MEANS, IS STRICTLY PROHIBITED.
+#
+# REDISTRIBUTION OF THIS FILE OR ITS CONTENTS IS A VIOLATION OF U.S. AND INTERNATIONAL LAW.
+# 
+# For full licenses see:
+# LICENSES/
+#
+#/ ---------------------------------------- //
+
+logging-config.toml
+main-config.toml
+/SCRIPTS/concat_*
+/target/CACHEDIR.TAG
+/target/.rustc_info.json
+/target/.future-incompat-report.json
+/target/debug
+/target/flycheck0
+/target/release
+/target/x86_64-unknown-linux-gnu/CACHEDIR.TAG
+/target/x86_64-unknown-linux-gnu/debug
+/target/x86_64-unknown-linux-gnu/release/*
+!/target/x86_64-unknown-linux-gnu/release/run
+
+#///////// END OF FILE //////////
