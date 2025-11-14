@@ -27,6 +27,11 @@
 - GOBSG reads the session cookie and retrieves the user's `username` and `user_id` stored in the session.
   - If the user is logged in, GOBSG returns that information.
   - If the user is not logged in, GOBSG either returns a default `username` and `user_id` or an error, depending on your configuration.
-
+### Logout Flow:
+`web client` -> `GOBSG` -> `OpenID Provider` -> `GOBSG` -> `web client`
+- Web client sends the user’s browser to GOBSG’s `/logout` route.
+- GOBSG clears the user’s session and redirects the browser to the OpenID Provider’s logout endpoint.
+- After completing its logout process, the OpenID Provider redirects the browser back to GOBSG.
+- GOBSG then redirects the browser back to the web client.
 
 
