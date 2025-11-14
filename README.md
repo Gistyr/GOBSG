@@ -133,6 +133,26 @@ client_secret = ""
     - Set to `true` to return default values
     - `default_username`: Return this username for unauthenticated users
     - `default_user_id`: Return this user id for unauthenticated users
+## logging-config.toml
+**Must be named `logging-config.toml`**             
+**Must be located in the same directory as the executable**                  
+**Do not change the order of any values in this file, because of serialization**        
+#### GOBSG used the `better-logger` crate: [GitHub Link](https://github.com/Gistyr/better-logger) - [crates.io Link](https://crates.io/crates/better-logger) 
+**Read the `better-logger` README for more information**          
+```toml
+terminal_logs = true 
+terminal_log_lvl = ""
+file_logs = false
+file_log_lvl = ""
+log_file_path = ""
+network_logs = false
+network_log_lvl = ""
+network_endpoint_url = ""
+debug_extra = true
+[network_format]
+type = "JsonText"
+field = "text"
+```
 # Notes
 - Your client-side application, this server, and your provider generally need to have the same domain name.
   - Typically these 3 services would each have their own sub domain. 
