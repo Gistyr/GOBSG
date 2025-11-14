@@ -5,6 +5,14 @@
 **S** -> Session     
 **G** -> Gateway   
 #### A secure OIDC Backend-for-Frontend gateway providing cookie-based session management for web clients
+## Licensing Summary
+This project is licensed under the [PolyForm Small Business License 1.0.0](https://polyformproject.org/licenses/small-business/1.0.0/)
+### What this means
+- **If you are a solo developer, sole proprietorship, nonprofit, or any organization with fewer than 100 workers AND under $1M annual revenue** --> You may use, modify, and distribute this software **for free** under PolyForm Small Business terms.
+- **If your company is over 100 workers or over $1M annual revenue** --> You must obtain a **commercial license**. 
+  - Request a commercial license by contacting: `contact@gistyr.dev`
+#### For full license text: 
+See `LICENSES/LICENSE-POLYFORM-SMALL-BUSINESS.md` or visit <https://polyformproject.org/licenses/small-business/1.0.0>.
 # Intended Architecture
 **Three components are needed:** `web client`, `GOBSG`, `OpenID Provider` 
 ### Login Flow:
