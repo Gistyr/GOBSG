@@ -14,7 +14,6 @@
 //! ---------------------------------------- //
 
 use better_logger::{LoggerSettings, NetworkFormat};
-use std::process::exit;
 use std::fs::read_to_string;
 use serde::Deserialize;
 
@@ -41,7 +40,6 @@ impl From<ConfigNetworkFormat> for NetworkFormat {
 pub(crate) struct LoggingConfiguration {
     pub(crate) terminal_logs: bool,
     pub(crate) terminal_log_lvl: String,
-    pub(crate) wasm_logging: bool,
     pub(crate) file_logs: bool,
     pub(crate) file_log_lvl: String,
     pub(crate) log_file_path: String,
@@ -50,32 +48,23 @@ pub(crate) struct LoggingConfiguration {
     pub(crate) network_endpoint_url: String,
     pub(crate) network_format: ConfigNetworkFormat,
     pub(crate) debug_extra: bool,
-    pub(crate) async_logging: bool,
 }
 
-pub(crate) fn new_logger_settings() -> LoggerSettings {
-    let config: LoggingConfiguration = {
-        match read_to_string(LOGGING_CONFIG_PATH) {
-            Ok(raw) => {
-                match toml::from_str(&raw) {
-                    Ok(config) => config,
-                    Err(error) => {
-                        eprintln!("toml::from_str failed: {:?}", error);
-                        exit(1);    
-                    }
-                }
-            }
-            Err(error) => {
-                eprintln!("read_to_string({:?}) failed: {:?}", LOGGING_CONFIG_PATH, error);
-                exit(1);                
+pub(crate) fn new_logger_settings() -> Result<LoggerSettings, String> {
+    let config: LoggingConfiguration = match read_to_string(LOGGING_CONFIG_PATH) {
+        Ok(raw) => {
+            match toml::from_str(&raw) {
+                Ok(config) => config,
+                Err(error) => return Err(format!("toml::from_str failed: {:?}", error)),
             }
         }
+        Err(error) => return Err(format!("read_to_string({:?}) failed: {:?}", LOGGING_CONFIG_PATH, error)),
     };
 
-    return LoggerSettings {
+    return Ok(LoggerSettings {
         terminal_logs: config.terminal_logs,
         terminal_log_lvl: config.terminal_log_lvl,
-        wasm_logging: config.wasm_logging,
+        wasm_logging: false, // Must be false
         file_logs: config.file_logs,
         file_log_lvl: config.file_log_lvl,
         log_file_path: config.log_file_path,
@@ -84,8 +73,8 @@ pub(crate) fn new_logger_settings() -> LoggerSettings {
         network_endpoint_url: config.network_endpoint_url,
         network_format: config.network_format.into(),
         debug_extra: config.debug_extra,
-        async_logging: config.async_logging,
-    };
+        async_logging: true, // Must be true
+    });
 }
 
 #[derive(Deserialize)]
@@ -151,23 +140,15 @@ pub(crate) struct MainConfiguration {
 }
 
 impl MainConfiguration {
-    pub(crate) fn new() -> MainConfiguration {
-        let config: ReadConfiguration = {
-            match read_to_string(MAIN_CONFIG_PATH) {
-                Ok(raw) => {
-                    match toml::from_str(&raw) {
-                        Ok(config) => config,
-                        Err(error) => {
-                            eprintln!("toml::from_str failed: {:?}", error);
-                            exit(1);    
-                        }
-                    }
-                }
-                Err(error) => {
-                    eprintln!("read_to_string({:?}) failed: {:?}", MAIN_CONFIG_PATH, error);
-                    exit(1);                
+    pub(crate) fn new() -> Result<MainConfiguration, String> {
+        let config: ReadConfiguration = match read_to_string(MAIN_CONFIG_PATH) {
+            Ok(raw) => {
+                match toml::from_str(&raw) {
+                    Ok(config) => config,
+                    Err(error) => return Err(format!("toml::from_str failed: {:?}", error)),
                 }
             }
+            Err(error) => return Err(format!("read_to_string({:?}) failed: {:?}", MAIN_CONFIG_PATH, error)),
         };
 
         let listen_address = match config.listen_address {
@@ -239,7 +220,7 @@ impl MainConfiguration {
             None => "0".to_string(),
         };
 
-        let main_config_testing = MainConfiguration {
+        return Ok(MainConfiguration {
             this_server_url: config.this_server_url,
             cookie_name: config.cookie_name,
             cookie_domain: config.cookie_domain,
@@ -267,8 +248,7 @@ impl MainConfiguration {
             user_details_fail_when_not_authenticated: user_details_fail_when_not_authenticated,
             default_username: default_username,
             default_user_id: default_user_id,
-        };
-        return main_config_testing;
+        });
     }
 }
 

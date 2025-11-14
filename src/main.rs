@@ -24,6 +24,7 @@ use routes::logout::logout_handler;
 use crate::tools::settings::{new_logger_settings, MainConfiguration};
 use better_logger::logger;
 use std::sync::{Arc, Mutex};
+use std::process::exit;
 use actix_web::{HttpServer, App, web};
 use actix_web::web::Data;
 use actix_web::middleware::DefaultHeaders;
@@ -73,29 +74,34 @@ pub(crate) type OpenidClientData = actix_web::web::Data<
 
 #[actix_web::main]
 async fn main() {
-    let logging_settings = new_logger_settings();
-
-    if logging_settings.wasm_logging {
-        eprintln!("wasm logging not allowed");
-        std::process::exit(1);
-    }
-    if !(logging_settings.async_logging) {
-        eprintln!("logging must be async");
-        std::process::exit(1);
-    }
-    if let Err(error) = logger::init(logging_settings) {
+    if let Err(error) = logger::init(
+        match new_logger_settings() {
+            Ok(settings) => settings,
+            Err(error) => {
+                logger::error!("{:?}", error);
+                exit(1);
+            }
+        }
+    ) {
         eprintln!("{:?}", error);
         std::process::exit(1);
     }
 
-    let configuration_settings = MainConfiguration::new();
+    let configuration_settings = match MainConfiguration::new() {
+        Ok(settings) => settings,
+        Err(error) => {
+            logger::error!("{:?}", error);
+            exit(1);
+        }
+    };
+
     let machine_name_1 = configuration_settings.machine_name.clone();
     let container_name_1 = configuration_settings.container_name.clone();
     let provider_1 = configuration_settings.provider.clone();
     let machine_name_2 = configuration_settings.machine_name.clone();
     let container_name_2 = configuration_settings.container_name.clone();
     let provider_2 = configuration_settings.provider.clone();
-
+    
     let shutdown = Arc::new(Notify::new());
     if configuration_settings.heartbeat_logging {        
         let shutdown_for_task = shutdown.clone();
