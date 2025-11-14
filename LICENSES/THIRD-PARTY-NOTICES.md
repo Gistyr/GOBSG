@@ -111,15 +111,6 @@ LICENSE-APACHE
 ```
 
 ```
-CRATE: urlencoding
-LICENSE: MIT
-URL: https://crates.io/crates/urlencoding
-
-SEE:
-LICENSE-MIT
-```
-
-```
 CRATE: chrono
 LICENSE: MIT OR Apache-2.0
 URL: https://crates.io/crates/chrono
@@ -133,16 +124,6 @@ LICENSE-APACHE
 CRATE: hex
 LICENSE: MIT OR Apache-2.0
 URL: https://crates.io/crates/hex
-
-SEE:
-LICENSE-MIT
-LICENSE-APACHE
-```
-
-```
-CRATE: base64
-LICENSE: MIT OR Apache-2.0
-URL: https://crates.io/crates/base64
 
 SEE:
 LICENSE-MIT
