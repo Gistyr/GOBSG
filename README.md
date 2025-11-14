@@ -13,6 +13,10 @@ This project is licensed under the [PolyForm Small Business License 1.0.0](https
   - Request a commercial license by contacting: `contact@gistyr.dev`
 #### For full license text: 
 See `LICENSES/LICENSE-POLYFORM-SMALL-BUSINESS.md` or visit <https://polyformproject.org/licenses/small-business/1.0.0>.
+### Learn
+> The best way to understand this code is to read it.         
+> The code base is no very large, and there are descriptive comments.          
+> Or have an LLM summarize it for you.           
 # Intended Architecture
 **Three components are needed:** `web client`, `GOBSG`, `OpenID Provider` 
 ### Login Flow:
@@ -41,5 +45,96 @@ See `LICENSES/LICENSE-POLYFORM-SMALL-BUSINESS.md` or visit <https://polyformproj
 - GOBSG clears the user’s session and redirects the browser to the OpenID Provider’s logout endpoint.
 - After completing its logout process, the OpenID Provider redirects the browser back to GOBSG.
 - GOBSG then redirects the browser back to the web client.
+# Settings
+## main-config.toml
+**Must be named `main-config.toml`**             
+**Must be located in the same directory as the executable**             
+**Read `Mandatory Settings` and `Optional Settings` below**          
+**Do not change the order of any values in this file, because of serialization**              
+```toml
+# --- MANDATORY --- #
+# --- See Mandatory Settings in README --- #
 
+this_server_url = "" 
+cookie_name = ""
+cookie_domain = ""
+secret_cookie_hex_key = ""
+requesting_client_url = ""
+issuer_url = ""
+logout_url = ""
+client = ""
+client_secret = ""
 
+# --- OPTIONAL --- #
+# --- See Optional Settings in README --- #
+# The values below above are the default values
+# Leave commented out to use the default, uncomment to set your own
+
+#listen_address = "0.0.0.0"  
+#listen_port = 3090
+#workers = 1 #default is: num_cpus::get() aka number of logical cores on the system
+#redis_address = "redis://127.0.0.1:6379"
+
+#heartbeat_logging = false
+#heartbeat_interval_hours = 12
+#machine_name = "machine"  
+#container_name = "container"
+#provider = "provider"
+
+#keep_alive_time_secs = 75
+#client_request_timeout_secs = 30
+#client_disconnect_timeout_secs = 5
+#max_connections = 25000
+
+#early_refresh_skew_secs = 120
+
+#user_details_fail_when_not_authenticated = true
+#default_username = "0"
+#default_user_id = "0"
+```
+### Mandatory Settings
+- `this_server_url`: The URL for this server
+    - "https://secure.mysite.com"
+- `cookie_name`: The name of the cookie stored on the users device
+    - "mysite_bff_sid"
+- `cookie_domain`: The domain for this server
+    - "secure.mysite.com"
+- `secret_cookie_hex_key`: Cryptographic key used to encrypt and sign session cookies
+    - generate a 128-character hexadecimal string
+- `requesting_client_url`: The URL of your client side application
+    - "https://mysite.com"
+- `issuer_url`: Your OpenID Connect provider’s “issuer”
+    - This is unique to each provider
+- `logout_url`: Your OpenID Connect provider's logout url
+    - Also unique to each provider
+- `client`: Your client ID
+    - Given by your provider
+- `client_secret`: Your client secret
+    - Also given by your provider
+### Optional Settings
+- `listen_address`: IP/interface the server binds to
+- `listen_port`: TCP port the server listens on
+- `workers`: Number of Actix worker
+    - Each worker runs its own event loop on a dedicated OS thread, adds concurrency
+- `redis_address`: User sessions are stored in Redis
+    - You have to install Redis
+- `heartbeat_logging`: Periodically emits a heartbeat log message
+    - `heartbeat_interval_hours`: Interval between heartbeat logs, in hours
+    - `machine_name`: The name of your machine 
+    - `container_name`: The name of your container
+    - `provider`: The name of your provider
+- `keep_alive_time_secs`: HTTP keep-alive timeout for idle connections
+- `client_request_timeout_secs`: Max time to wait for a full request from a client before timing out
+- `client_disconnect_timeout_secs`: Grace period to finish work after a client disconnects
+- `max_connections`: Upper limit on concurrent TCP connections accepted by the server
+- `early_refresh_skew_secs`: grace period to refresh the access token slightly before it actually expires
+    - Your access token validity must be longer than this time, by a few minutes ideally
+- `user_details_fail_when_not_authenticated`: By default `/details` will fail if there is no session for the user
+    - Set to `true` to return default values
+    - `default_username`: Return this username for unauthenticated users
+    - `default_user_id`: Return this user id for unauthenticated users
+# Notes
+- Your client-side application, this server, and your provider generally need to have the same domain name.
+  - Typically these 3 services would each have their own sub domain. 
+- Your provider must issue JWT's that are compatible with the [openidconnect](https://crates.io/crates/openidconnect) crate.
+    - This generally is not an issue, but if you are using custom or non-standard JWT's then validation will fail.
