@@ -8,23 +8,23 @@
 ## Licensing Summary
 This project is licensed under the [PolyForm Small Business License 1.0.0](https://polyformproject.org/licenses/small-business/1.0.0/)
 ### What this means
-- **If you are a solo developer, sole proprietorship, nonprofit, or any organization with fewer than 100 workers AND under $1M annual revenue** --> You may use, modify, and distribute this software **for free** under PolyForm Small Business terms.
+- **If you are a solo developer, sole proprietorship, nonprofit, or any organization with fewer than 100 workers and under $1M annual revenue** --> You may use, modify, and distribute this software **for free** under PolyForm Small Business terms.
 - **If your company is over 100 workers or over $1M annual revenue** --> You must obtain a **commercial license**. 
   - Request a commercial license by contacting: `contact@gistyr.dev`
 #### For full license text: 
 See `LICENSES/LICENSE-POLYFORM-SMALL-BUSINESS.md` or visit <https://polyformproject.org/licenses/small-business/1.0.0>.
 ### Learn
-> The best way to understand this code is to read it.         
-> The code base is no very large, and there are descriptive comments.          
-> Or have an LLM summarize it for you.           
-# Intended Architecture
+> The best way to understand this code is to read it.          
+> The codebase is not very large, and there are descriptive comments.            
+> Or have an LLM summarize it for you.               
+# Intended Architecture  
 **Three components are needed:** `web client`, `GOBSG`, `OpenID Provider` 
 ### Login Flow:
 `web client` -> `GOBSG` -> `OpenID Provider` -> `GOBSG` -> `web client`
 - Web client sends the user’s browser to GOBSG’s `/login` route.
 - GOBSG creates a new session, adds security parameters to the session, and sends the user to the OpenID Provider's login page.
 - The OpenID Provider will show the user a login screen, the user will login.
-- OpenID Provider redirects back to GOBSG's /callback route, simultaneously passing user data to GOBSG in the form of a Json Web Token.
+- OpenID Provider redirects back to GOBSG's /callback route, simultaneously passing user data to GOBSG in the form of a JSON Web Token.
 - GOBSG will validate the security parameters, check for errors, parse, and validate the JWT. If all is well, user data will be added to the session.
 - GOBSG sends the browser back to the web client. The browser now carries a session cookie that identifies the server-side session.
 ### Session Status Flow:
@@ -95,7 +95,7 @@ client_secret = ""
 ### Mandatory Settings
 - `this_server_url`: The URL for this server
     - "https://secure.mysite.com"
-- `cookie_name`: The name of the cookie stored on the users device
+- `cookie_name`: The name of the cookie stored on the user's device
     - "mysite_bff_sid"
 - `cookie_domain`: The domain for this server
     - "secure.mysite.com"
@@ -114,10 +114,10 @@ client_secret = ""
 ### Optional Settings
 - `listen_address`: IP/interface the server binds to
 - `listen_port`: TCP port the server listens on
-- `workers`: Number of Actix worker
+- `workers`: Number of Actix workers
     - Each worker runs its own event loop on a dedicated OS thread, adds concurrency
 - `redis_address`: User sessions are stored in Redis
-    - You have to install Redis
+    - You must have Redis installed and running
 - `heartbeat_logging`: Periodically emits a heartbeat log message
     - `heartbeat_interval_hours`: Interval between heartbeat logs, in hours
     - `machine_name`: The name of your machine 
@@ -137,12 +137,12 @@ client_secret = ""
 **Must be named `logging-config.toml`**             
 **Must be located in the same directory as the executable**                  
 **Do not change the order of any values in this file, because of serialization**        
-#### GOBSG used the `better-logger` crate: [GitHub Link](https://github.com/Gistyr/better-logger) - [crates.io Link](https://crates.io/crates/better-logger) 
+#### GOBSG uses the `better-logger` crate: [GitHub Link](https://github.com/Gistyr/better-logger) - [crates.io Link](https://crates.io/crates/better-logger) 
 **Read the `better-logger` README for more information**           
-- All the logging settings are the same as the `better-logger` documentation, except in `toml` format
-- `wasm_logging` and `async_logging` are purposley not a configuratbe option in `GOBSG`
+- All the logging settings are the same as the `better-logger` documentation, except in `TOML` format
+- `wasm_logging` and `async_logging` are purposely not a configurable option in `GOBSG`
   - Because `wasm_logging` must be `false` and `async_logging` must be `true`
-  - All the other settings are the same, as seen in the `better-logger` docementation
+  - All the other settings are the same, as seen in the `better-logger` documentation
 ```toml
 terminal_logs = true 
 terminal_log_lvl = ""
@@ -158,7 +158,9 @@ type = "JsonText"
 field = "text"
 ```
 # Notes
-- Your client-side application, this server, and your provider generally need to have the same domain name.
-  - Typically these 3 services would each have their own sub domain. 
-- Your provider must issue JWT's that are compatible with the [openidconnect](https://crates.io/crates/openidconnect) crate.
-    - This generally is not an issue, but if you are using custom or non-standard JWT's then validation will fail.
+- Your client-side application, this server, and your provider generally need to have the same domain name
+  - Typically these 3 services would each have their own subdomain
+- Your provider must issue JWT's that are compatible with the [openidconnect](https://crates.io/crates/openidconnect) crate
+    - This generally is not an issue, but if you are using custom or non-standard JWTs then validation will fail
+- This application is fairly specific in its use case
+    - There is still work to be done to make it more general purpose
