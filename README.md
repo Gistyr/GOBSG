@@ -138,7 +138,11 @@ client_secret = ""
 **Must be located in the same directory as the executable**                  
 **Do not change the order of any values in this file, because of serialization**        
 #### GOBSG used the `better-logger` crate: [GitHub Link](https://github.com/Gistyr/better-logger) - [crates.io Link](https://crates.io/crates/better-logger) 
-**Read the `better-logger` README for more information**          
+**Read the `better-logger` README for more information**           
+- All the logging settings are the same as the `better-logger` documentation, except in `toml` format
+- `wasm_logging` and `async_logging` are purposley not a configuratbe option in `GOBSG`
+  - Because `wasm_logging` must be `false` and `async_logging` must be `true`
+  - All the other settings are the same, as seen in the `better-logger` docementation
 ```toml
 terminal_logs = true 
 terminal_log_lvl = ""
