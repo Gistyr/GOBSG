@@ -164,3 +164,4 @@ field = "text"
     - This generally is not an issue, but if you are using custom or non-standard JWTs then validation will fail
 - This application is fairly specific in its use case
     - There is still work to be done to make it more general purpose
+- You can see the documentation on `concat.sh` here: [LINK](https://github.com/Lozlof/concat.sh)
