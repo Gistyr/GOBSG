@@ -27,8 +27,7 @@ homepage = "https://github.com/Gistyr/GOBSG"
 documentation = "https://docs.rs/gobsg"   
 keywords = ["logging", "async", "file", "console", "log"]
 categories = ["web-programming::http-server", "web-programming::http-client", "authentication", "network-programming", "config"]
-exclude = ["tests/logs/*.log"]
-
+exclude = ["concat.sh", "target/x86_64-unknown-linux-gnu/release/gobsg"]
 
 [dependencies]
 better-logger = { version = "2.1.3", features = ["native"] }

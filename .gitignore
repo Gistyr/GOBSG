@@ -15,6 +15,7 @@
 
 logging-config.toml
 main-config.toml
+concat_*
 /target/CACHEDIR.TAG
 /target/.rustc_info.json
 /target/.future-incompat-report.json
