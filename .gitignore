@@ -22,6 +22,7 @@ concat_*
 /target/debug
 /target/flycheck0
 /target/release
+/target/packge
 /target/wasm32-unknown-unknown
 /target/x86_64-unknown-linux-gnu/CACHEDIR.TAG
 /target/x86_64-unknown-linux-gnu/debug
