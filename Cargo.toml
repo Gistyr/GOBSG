@@ -15,12 +15,24 @@
 
 [package]
 name = "gobsg"
-version = "3.1.0"
+version = "3.1.1"
 edition = "2024"
+rust-version = "1.85.1"
+authors = ["Gistyr LLC <contact@gistyr.dev>"]
+description = "A secure OIDC Backend-for-Frontend gateway providing cookie-based session management for web clients"
+readme = "README.md"
+license = "PolyForm Small Business License 1.0.0"
+repository = "https://github.com/Gistyr/GOBSG"
+homepage = "https://github.com/Gistyr/GOBSG"
+documentation = "https://docs.rs/gobsg"   
+keywords = ["logging", "async", "file", "console", "log"]
+categories = ["development-tools", "asynchronous"]
+exclude = ["tests/logs/*.log"]
+
 
 [dependencies]
-better-logger = { version = "2.0.3", features = ["native"] }
-actix-web = "4.11.0"
+better-logger = { version = "2.1.3", features = ["native"] }
+actix-web = "4.12.0"
 actix-session = { version = "0.11.0", features = ["redis-session"] }
 actix-cors = "0.7.0"
 openidconnect = "4.0.1"
