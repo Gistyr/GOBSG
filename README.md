@@ -165,3 +165,11 @@ field = "text"
 - This application is fairly specific in its use case
     - There is still work to be done to make it more general purpose
 - You can see the documentation on `concat.sh` here: [LINK](https://github.com/Lozlof/concat.sh)
+## Notice about the committed executable
+#### Does not apply to crates.io, only applies to GitHub 
+`cargo build --release --target x86_64-unknown-linux-gnu`                   
+`/target/x86_64-unknown-linux-gnu/release/gobsg` is committed:                                 
+**I do this so I don't have to build on the production VM.**          
+**You should clean and rebuild your own executable.**                          
+## Contributing
+Contributions are welcome if you want to.                             
