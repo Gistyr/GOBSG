@@ -26,7 +26,7 @@ repository = "https://github.com/Gistyr/GOBSG"
 homepage = "https://github.com/Gistyr/GOBSG"
 documentation = "https://docs.rs/gobsg"   
 keywords = ["logging", "async", "file", "console", "log"]
-categories = ["development-tools", "asynchronous"]
+categories = ["web-programming::http-server", "web-programming::http-client", "authentication", "network-programming", "config"]
 exclude = ["tests/logs/*.log"]
 
 
