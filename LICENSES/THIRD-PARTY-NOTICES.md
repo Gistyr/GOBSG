@@ -81,16 +81,6 @@ LICENSE-BSD
 ```
 
 ```
-CRATE: reqwest
-LICENSE: MIT OR Apache-2.0
-URL: https://crates.io/crates/reqwest
-
-SEE:
-LICENSE-MIT
-LICENSE-APACHE
-```
-
-```
 CRATE: serde
 LICENSE: MIT OR Apache-2.0
 URL: https://crates.io/crates/serde

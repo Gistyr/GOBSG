@@ -23,8 +23,8 @@ use actix_session::Session;
 use openidconnect::{RefreshToken, OAuth2TokenResponse};
 use chrono::Utc;
 use serde_json::json;
-use reqwest::ClientBuilder;
-use reqwest::redirect::Policy;
+use openidconnect::reqwest::ClientBuilder;
+use openidconnect::reqwest::redirect::Policy;
 use std::time::Duration as timeDuration;
 use chrono::Duration as chronoDuration;
 

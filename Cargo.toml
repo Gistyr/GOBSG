@@ -15,7 +15,7 @@
 
 [package]
 name = "gobsg"
-version = "3.1.3"
+version = "3.2.1"
 edition = "2024"
 rust-version = "1.85.1"
 authors = ["Gistyr LLC <contact@gistyr.dev>"]
@@ -35,10 +35,9 @@ better-logger = { version = "2.1.5", features = ["native"] }
 actix-web = "4.12.1"
 actix-session = { version = "0.11.0", features = ["redis-session"] }
 actix-cors = "0.7.0"
-openidconnect = "4.0.1"
+openidconnect = { version = "4.0.1", features = ["reqwest"] }
 redis = { version = "0.32.7", features = ["tokio-comp"] }
 tokio = "1.48.0"
-reqwest = { version = "0.12.28", features = ["json"] }
 serde = { version = "1.0.228", features = ["derive"] }
 serde_json = "1.0.145"
 chrono = "0.4.42"
