@@ -413,9 +413,9 @@ checksum = "55248b47b0caf0546f7988906588779981c43bb1bc9d0c44087278f80cdb44ba"
 
 [[package]]
 name = "better-logger"
-version = "2.1.5"
+version = "2.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7ec94bfb70a431d6b50a0c8fa1da8fbd1278c4c0cabb8f1c31b1642e508c1dce"
+checksum = "86b90dc8e53fe319151c5b4d8a30c5b620a2751744ec91d19227be69a9f142bb"
 dependencies = [
  "chrono",
  "env_logger",
@@ -1053,7 +1053,7 @@ dependencies = [
 
 [[package]]
 name = "gobsg"
-version = "3.2.2"
+version = "3.2.3"
 dependencies = [
  "actix-cors",
  "actix-session",
