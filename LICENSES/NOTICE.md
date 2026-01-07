@@ -1,6 +1,6 @@
 # LICENSING         
 
-All original code in this repository is © 2025 Gistyr LLC and licensed under the **PolyForm Small Business License 1.0.0**.                
+All original code in this repository is © 2026 Gistyr LLC and licensed under the **PolyForm Small Business License 1.0.0**.                
 
 See `LICENSE-POLYFORM-SMALL-BUSINESS.md` or visit:                   
 <https://polyformproject.org/licenses/small-business/1.0.0>                    

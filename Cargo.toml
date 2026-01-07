@@ -15,7 +15,7 @@
 
 [package]
 name = "gobsg"
-version = "3.1.2"
+version = "3.1.3"
 edition = "2024"
 rust-version = "1.85.1"
 authors = ["Gistyr LLC <contact@gistyr.dev>"]
@@ -31,8 +31,8 @@ exclude = ["concat.sh", "target/x86_64-unknown-linux-gnu/release/gobsg"]
 default-run = "gobsg"
 
 [dependencies]
-better-logger = { version = "2.1.3", features = ["native"] }
-actix-web = "4.12.0"
+better-logger = { version = "2.1.5", features = ["native"] }
+actix-web = "4.12.1"
 actix-session = { version = "0.11.0", features = ["redis-session"] }
 actix-cors = "0.7.0"
 openidconnect = "4.0.1"
