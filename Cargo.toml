@@ -15,7 +15,7 @@
 
 [package]
 name = "gobsg"
-version = "3.2.3"
+version = "3.2.4"
 edition = "2024"
 rust-version = "1.85.1"
 authors = ["Gistyr LLC <contact@gistyr.dev>"]
