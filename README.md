@@ -10,7 +10,7 @@ This project is licensed under the [PolyForm Small Business License 1.0.0](https
 ### What this means
 - **If you are a solo developer, sole proprietorship, nonprofit, or any organization with fewer than 100 workers and under $1M annual revenue** --> You may use, modify, and distribute this software **for free** under PolyForm Small Business terms.
 - **If your company is over 100 workers or over $1M annual revenue** --> You must obtain a **commercial license**. 
-  - Request a commercial license by contacting: `contact@gistyr.dev`
+  - Request a commercial license at: [gobsg.dev](https://gobsg.dev)
 #### For full license text: 
 See `LICENSES/LICENSE-POLYFORM-SMALL-BUSINESS.md` or visit <https://polyformproject.org/licenses/small-business/1.0.0>.
 ### Learn
@@ -172,4 +172,5 @@ field = "text"
 **I do this so I don't have to build on the production VM.**          
 **You should clean and rebuild your own executable.**                          
 ## Contributing
-Contributions are welcome if you want to.                             
+Contributions are welcome if you want to.          
+# [gobsg.dev](https://gobsg.dev)
